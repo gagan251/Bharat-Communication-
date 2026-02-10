@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharat Communication Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbits" aria-hidden="true">
+    <div class="orbit o1"></div>
+    <div class="orbit o2"></div>
+    <div class="orbit o3"></div>
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+  </div>
+
+  <header class="topbar reveal">
+    <a class="brand" href="#">
+      <img class="brand__logo" src="assets/logo.svg" alt="Bharat Communication Center logo" />
+      <span class="brand__name">Bharat Communication Center</span>
+    </a>
+
+    <button class="pill" type="button" id="profileBtn" aria-label="Open profile menu">
+      <span class="pill__text">None</span>
+      <span class="pill__caret" aria-hidden="true">▾</span>
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1 class="hero__title reveal">Welcome</h1>
+
+        <div class="hero__actions reveal">
+          <button class="cta" id="startBtn" type="button">
+            <span>Hand Lage</span>
+            <span class="cta__shine" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <p class="hero__note reveal">
+          Practice Hindi & English dictation, access the library (PDF/Books/Audio), and track progress.
+        </p>
+      </div>
+
+      <div class="hero__right reveal" id="heroArt">
+        <div class="art">
+          <div class="art__rings" aria-hidden="true">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+          </div>
+
+          <div class="art__blob" aria-hidden="true"></div>
+
+          <div class="art__card">
+            <img src="assets/hero-illustration.svg" alt="Student studying on a computer" />
+          </div>
+
+          <div class="art__bubble b1" aria-hidden="true"></div>
+          <div class="art__bubble b2" aria-hidden="true"></div>
+          <div class="art__bubble b3" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick reveal" aria-label="Quick links">
+      <a class="quick__item" href="#" data-anim="pop">
+        <span class="quick__icon" aria-hidden="true">📞</span>
+        <span class="quick__label">Free Diction</span>
+      </a>
+      <a class="quick__item" href="#" data-anim="pop">
+        <span class="quick__icon" aria-hidden="true">🗓️</span>
+        <span class="quick__label">Free Diction</span>
+      </a>
+      <a class="quick__item" href="#" data-anim="pop">
+        <span class="quick__icon" aria-hidden="true">🌐</span>
+        <span class="quick__label">Free Diction</span>
+      </a>
+      <a class="quick__item" href="#" data-anim="pop">
+        <span class="quick__icon" aria-hidden="true">💬</span>
+        <span class="quick__label">Free Diction</span>
+      </a>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
