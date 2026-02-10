@@ -1,96 +1,116 @@
-// Bharat Communication Center - homepage interactions
-(() => {
-  const revealEls = Array.from(document.querySelectorAll(".reveal"));
-  const toast = document.getElementById("toast");
-  const startBtn = document.getElementById("startBtn");
-  const profileBtn = document.getElementById("profileBtn");
-  const art = document.querySelector(".art__card");
-  const heroArt = document.getElementById("heroArt");
+// Mobile Menu Toggle
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
 
-  // Staggered reveal on load
-  function revealIn() {
-    revealEls.forEach((el, i) => {
-      setTimeout(() => el.classList.add("is-in"), 120 + i * 90);
-    });
+menuBtn?.addEventListener("click", () => {
+  const isOpen = mobileMenu.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+  // animate burger to X
+  const bars = menuBtn.querySelectorAll("span");
+  if (isOpen) {
+    bars[0].style.transform = "translateY(7px) rotate(45deg)";
+    bars[1].style.opacity = "0";
+    bars[2].style.transform = "translateY(-7px) rotate(-45deg)";
+  } else {
+    bars[0].style.transform = "";
+    bars[1].style.opacity = "";
+    bars[2].style.transform = "";
   }
+});
 
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add("show");
-    window.clearTimeout(showToast._t);
-    showToast._t = window.setTimeout(() => toast.classList.remove("show"), 1600);
+// Close mobile menu on link click
+document.querySelectorAll(".m-link").forEach(a => {
+  a.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    const bars = menuBtn.querySelectorAll("span");
+    bars[0].style.transform = "";
+    bars[1].style.opacity = "";
+    bars[2].style.transform = "";
+  });
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add("show");
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => io.observe(el));
+
+// Simple count-up stats (Hero)
+function animateCount(el, to) {
+  const start = 0;
+  const duration = 900;
+  const t0 = performance.now();
+
+  function tick(t) {
+    const p = Math.min((t - t0) / duration, 1);
+    const val = Math.floor(start + (to - start) * (p * (2 - p)));
+    el.textContent = val;
+    if (p < 1) requestAnimationFrame(tick);
   }
+  requestAnimationFrame(tick);
+}
 
-  // CTA click ripple-ish + toast (placeholder)
-  startBtn?.addEventListener("click", (e) => {
-    const btn = e.currentTarget;
-    const r = document.createElement("span");
-    r.className = "ripple";
-    const rect = btn.getBoundingClientRect();
+const statNums = document.querySelectorAll(".stat-num[data-count]");
+let counted = false;
+const hero = document.getElementById("home");
+
+const heroObs = new IntersectionObserver((entries) => {
+  if (counted) return;
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      counted = true;
+      statNums.forEach(n => animateCount(n, Number(n.dataset.count || 0)));
+    }
+  });
+}, { threshold: 0.3 });
+
+if (hero) heroObs.observe(hero);
+
+// 3D tilt on hero card
+const tiltCard = document.getElementById("tiltCard");
+if (tiltCard) {
+  const maxTilt = 10;
+
+  tiltCard.addEventListener("mousemove", (e) => {
+    const rect = tiltCard.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    r.style.left = x + "px";
-    r.style.top = y + "px";
-    btn.appendChild(r);
-    setTimeout(() => r.remove(), 650);
 
-    showToast("Opening Dictation… (connect later)");
+    const px = (x / rect.width) - 0.5;
+    const py = (y / rect.height) - 0.5;
+
+    const rotY = px * maxTilt * 2;
+    const rotX = -py * maxTilt * 2;
+
+    tiltCard.style.transform =
+      `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
   });
 
-  profileBtn?.addEventListener("click", () => {
-    showToast("Profile menu (add later)");
+  tiltCard.addEventListener("mouseleave", () => {
+    tiltCard.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
   });
+}
 
-  // Micro-interaction: pop quick items on hover (via JS for a tiny extra feel)
-  document.querySelectorAll("[data-anim='pop']").forEach((a) => {
-    a.addEventListener("mouseenter", () => a.classList.add("pop"));
-    a.addEventListener("mouseleave", () => a.classList.remove("pop"));
-  });
+// Coming soon button
+const notifyBtn = document.getElementById("notifyBtn");
+notifyBtn?.addEventListener("click", () => {
+  alert("✅ Thanks! We will notify you when courses are launched.");
+});
 
-  // Parallax tilt for hero art
-  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+// Contact form (demo)
+const form = document.getElementById("contactForm");
+const hint = document.getElementById("formHint");
 
-  function onMove(e) {
-    const rect = heroArt.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;   // 0..1
-    const py = (e.clientY - rect.top) / rect.height;   // 0..1
-    const rx = clamp((0.5 - py) * 10, -8, 8);
-    const ry = clamp((px - 0.5) * 12, -10, 10);
-    art.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
-  }
+form?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  hint.textContent = "✅ Message saved (demo). Connect backend later.";
+  form.reset();
+  setTimeout(() => (hint.textContent = ""), 3500);
+});
 
-  function resetTilt() {
-    art.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0px)";
-  }
-
-  heroArt?.addEventListener("mousemove", onMove);
-  heroArt?.addEventListener("mouseleave", resetTilt);
-
-  // Start
-  revealIn();
-})();
-
-/* Ripple style injected (keeps CSS file cleaner) */
-(() => {
-  const style = document.createElement("style");
-  style.textContent = `
-    .cta { position: relative; }
-    .ripple{
-      position:absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      background: rgba(255,255,255,.55);
-      animation: ripple .65s ease-out forwards;
-      pointer-events:none;
-      z-index: 0;
-    }
-    @keyframes ripple{
-      from{ opacity: .9; transform: translate(-50%, -50%) scale(1); }
-      to{ opacity: 0; transform: translate(-50%, -50%) scale(18); }
-    }
-    .quick__item.pop{ transform: translateY(-3px) scale(1.02); }
-  `;
-  document.head.appendChild(style);
-})();
