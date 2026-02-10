@@ -3,93 +3,344 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bharat Communication Center</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <title>Bharat Communication Centre</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-orbits" aria-hidden="true">
-    <div class="orbit o1"></div>
-    <div class="orbit o2"></div>
-    <div class="orbit o3"></div>
-    <div class="dot d1"></div>
-    <div class="dot d2"></div>
+
+  <!-- Top glow background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
   </div>
 
-  <header class="topbar reveal">
-    <a class="brand" href="#">
-      <img class="brand__logo" src="assets/logo.svg" alt="Bharat Communication Center logo" />
-      <span class="brand__name">Bharat Communication Center</span>
-    </a>
+  <!-- Header / Navbar -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <!-- Left: Logo + Name -->
+      <a class="brand" href="#home">
+        <div class="logo-box" title="Logo">
+          <!-- CHANGE HERE: Put your logo image inside this div -->
+          <!-- Example:
+            <img src="assets/logo.png" alt="Bharat Communication Centre Logo" />
+          -->
+          <span class="logo-letter">B</span>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Bharat Communication</div>
+          <div class="brand-sub">Centre</div>
+        </div>
+      </a>
 
-    <button class="pill" type="button" id="profileBtn" aria-label="Open profile menu">
-      <span class="pill__text">None</span>
-      <span class="pill__caret" aria-hidden="true">▾</span>
-    </button>
+      <!-- Center: Links -->
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#free-dict" class="nav-link">Free Dict</a>
+        <a href="#contact" class="nav-link">Contact Us</a>
+        <a href="#notes" class="nav-link">Notes</a>
+      </nav>
+
+      <!-- Right: Buttons + Mobile Toggle -->
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="login.html">Login</a>
+        <a class="btn btn-primary" href="signup.html">Signup</a>
+
+        <button class="icon-btn" id="menuBtn" aria-label="Open Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" class="m-link">Home</a>
+      <a href="#free-dict" class="m-link">Free Dict</a>
+      <a href="#contact" class="m-link">Contact Us</a>
+      <a href="#notes" class="m-link">Notes</a>
+      <div class="m-actions">
+        <a class="btn btn-ghost w-full" href="login.html">Login</a>
+        <a class="btn btn-primary w-full" href="signup.html">Signup</a>
+      </div>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero__left">
-        <h1 class="hero__title reveal">Welcome</h1>
+  <!-- Main -->
+  <main>
 
-        <div class="hero__actions reveal">
-          <button class="cta" id="startBtn" type="button">
-            <span>Hand Lage</span>
-            <span class="cta__shine" aria-hidden="true"></span>
-          </button>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid reveal">
+        <!-- Left: Title -->
+        <div class="hero-left">
+          <div class="pill">
+            <span class="dot"></span>
+            Student Friendly • Clean • Fast
+          </div>
+
+          <h1 class="hero-title">
+            Bharat <span class="accent">Communication</span><br />
+            Centre
+          </h1>
+
+          <p class="hero-desc">
+            Practice dictation, learn typing skills, get notes, and grow your communication with a clean,
+            easy-to-use student dashboard experience.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#free-dict">Explore Free Dict</a>
+            <a class="btn btn-soft" href="#contact">Contact Us</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-num" data-count="250">0</div>
+              <div class="stat-label">Practice Tests</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-count="2">0</div>
+              <div class="stat-label">Languages</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" data-count="24">0</div>
+              <div class="stat-label">Support</div>
+            </div>
+          </div>
         </div>
 
-        <p class="hero__note reveal">
-          Practice Hindi & English dictation, access the library (PDF/Books/Audio), and track progress.
-        </p>
+        <!-- Right: Image area (blank, you add your own) -->
+        <div class="hero-right">
+          <div class="hero-card tilt" id="tiltCard">
+            <div class="hero-card-top">
+              <div class="chip">BCC</div>
+              <div class="sparkle" aria-hidden="true"></div>
+            </div>
+
+            <!-- CHANGE HERE: Add your hero image inside this box -->
+            <div class="image-slot" title="Add your hero image here">
+              <!-- Example:
+                <img src="assets/hero.png" alt="Hero image" />
+              -->
+              <div class="image-placeholder">
+                <div class="ph-icon">🖼️</div>
+                <div class="ph-text">
+                  <strong>Hero Image Area</strong>
+                  <span>Paste your image here</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-card-bottom">
+              <div class="mini">
+                <span class="mini-dot"></span>
+                Free Dictations
+              </div>
+              <div class="mini">
+                <span class="mini-dot"></span>
+                Notes & Courses
+              </div>
+              <div class="mini">
+                <span class="mini-dot"></span>
+                Student Login
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-      <div class="hero__right reveal" id="heroArt">
-        <div class="art">
-          <div class="art__rings" aria-hidden="true">
-            <span class="ring r1"></span>
-            <span class="ring r2"></span>
-            <span class="ring r3"></span>
-          </div>
+    <!-- FREE DICT -->
+    <section class="section" id="free-dict">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2 class="section-title">Free Dict</h2>
+          <p class="section-sub">
+            Choose a dictation set and start practicing. (Cards are placeholders — connect them later.)
+          </p>
+        </div>
 
-          <div class="art__blob" aria-hidden="true"></div>
+        <div class="grid-6">
+          <!-- Card 1 -->
+          <a class="dict-card glow" href="#">
+            <div class="card-badge">Hindi</div>
+            <div class="card-title">Dictation Set 01</div>
+            <div class="card-sub">Beginner • Speed Focus</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
 
-          <div class="art__card">
-            <img src="assets/hero-illustration.svg" alt="Student studying on a computer" />
-          </div>
+          <!-- Card 2 -->
+          <a class="dict-card" href="#">
+            <div class="card-badge">English</div>
+            <div class="card-title">Dictation Set 02</div>
+            <div class="card-sub">Accuracy • Practice</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
 
-          <div class="art__bubble b1" aria-hidden="true"></div>
-          <div class="art__bubble b2" aria-hidden="true"></div>
-          <div class="art__bubble b3" aria-hidden="true"></div>
+          <!-- Card 3 -->
+          <a class="dict-card" href="#">
+            <div class="card-badge">Hindi</div>
+            <div class="card-title">Dictation Set 03</div>
+            <div class="card-sub">Steno • Repetition</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a class="dict-card" href="#">
+            <div class="card-badge">English</div>
+            <div class="card-title">Dictation Set 04</div>
+            <div class="card-sub">Typing • Confidence</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <!-- Card 5 -->
+          <a class="dict-card" href="#">
+            <div class="card-badge">Hindi</div>
+            <div class="card-title">Dictation Set 05</div>
+            <div class="card-sub">Exam Pattern</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+
+          <!-- Card 6 -->
+          <a class="dict-card" href="#">
+            <div class="card-badge">English</div>
+            <div class="card-title">Dictation Set 06</div>
+            <div class="card-sub">Speed Drill</div>
+            <div class="card-footer">
+              <span class="tag">Start</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="quick reveal" aria-label="Quick links">
-      <a class="quick__item" href="#" data-anim="pop">
-        <span class="quick__icon" aria-hidden="true">📞</span>
-        <span class="quick__label">Free Diction</span>
-      </a>
-      <a class="quick__item" href="#" data-anim="pop">
-        <span class="quick__icon" aria-hidden="true">🗓️</span>
-        <span class="quick__label">Free Diction</span>
-      </a>
-      <a class="quick__item" href="#" data-anim="pop">
-        <span class="quick__icon" aria-hidden="true">🌐</span>
-        <span class="quick__label">Free Diction</span>
-      </a>
-      <a class="quick__item" href="#" data-anim="pop">
-        <span class="quick__icon" aria-hidden="true">💬</span>
-        <span class="quick__label">Free Diction</span>
-      </a>
+    <!-- COURSES -->
+    <section class="section" id="notes">
+      <div class="container reveal">
+        <div class="section-head center">
+          <h2 class="section-title">Courses</h2>
+          <p class="section-sub">Coming Soon</p>
+        </div>
+
+        <div class="coming-soon">
+          <div class="soon-icon">⏳</div>
+          <div class="soon-text">
+            <h3>Premium Courses are on the way</h3>
+            <p>Typing • Steno • Notes • Mock Tests • Progress Tracking</p>
+          </div>
+          <button class="btn btn-soft" id="notifyBtn">Notify Me</button>
+        </div>
+      </div>
     </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container reveal">
+        <div class="section-head">
+          <h2 class="section-title">Contact Us</h2>
+          <p class="section-sub">Ask anything. We’ll reply quickly.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Quick Message</h3>
+            <form id="contactForm">
+              <div class="form-row">
+                <label>Name</label>
+                <input type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-row">
+                <label>Mobile / Email</label>
+                <input type="text" placeholder="Your contact" required />
+              </div>
+              <div class="form-row">
+                <label>Message</label>
+                <textarea rows="4" placeholder="Write your message..." required></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Send</button>
+              <p class="form-hint" id="formHint"></p>
+            </form>
+          </div>
+
+          <div class="contact-card">
+            <h3>Info</h3>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-ico">📍</span>
+                <div>
+                  <strong>Address</strong>
+                  <p>Add your institute address</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-ico">📞</span>
+                <div>
+                  <strong>Phone</strong>
+                  <p>Add your phone number</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-ico">✉️</span>
+                <div>
+                  <strong>Email</strong>
+                  <p>Add your email</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="image-slot small" title="Add your contact image">
+              <!-- CHANGE HERE: Add your contact-side image if you want -->
+              <div class="image-placeholder">
+                <div class="ph-icon">🖼️</div>
+                <div class="ph-text">
+                  <strong>Optional Image</strong>
+                  <span>Paste image here</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Bharat Communication Centre</div>
+        <p class="footer-sub">Education • Typing • Dictation • Notes</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#free-dict">Free Dict</a>
+        <a href="#contact">Contact</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
